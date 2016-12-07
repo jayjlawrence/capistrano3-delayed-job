@@ -73,7 +73,7 @@ namespace :delayed_job do
   end
 
   after 'deploy:published', 'delayed_job:restart' do
-    invoke 'delayed_job:restart'
+    invoke 'delayed_job:restart' if fetch(:delayed_job_default_hooks)
   end
 
 end
@@ -86,5 +86,6 @@ namespace :load do
     set :delayed_job_roles, :app
     set :delayed_job_bin_path, 'bin'
     set :delayed_job_monitor, nil
+    set :delayed_job_default_hooks, true
   end
 end

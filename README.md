@@ -113,6 +113,11 @@ after 'deploy:published', 'delayed_job:restart' do
 end
 ```
 
+You can disable default hook by setting delayed_job_default_hooks to false
+```ruby
+set delayed_job_default_hooks, false
+```
+
 Following setting is recommended to avoid stop/restart problem.
 See [Issue #16](https://github.com/platanus/capistrano3-delayed-job/issues/16) or [PR #22](https://github.com/platanus/capistrano3-delayed-job/pull/22) for more detail.
 
