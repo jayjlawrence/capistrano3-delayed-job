@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "capistrano3-delayed-job"
-  spec.version       = "1.7.2"
+  spec.version       = "1.7.3"
   spec.authors       = ["Rob Biedenharn",
                         "Juan Ignacio Donoso",
                         "Agustin Feuerhake",
@@ -24,7 +24,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'capistrano', '~> 3.0', '>= 3.0.0'
+  spec.add_dependency 'daemons', '~> 1.2.4'
 
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rake", ">= 10.0"
   spec.add_development_dependency "rubocop", "~> 0.0", '>= 0.39.0'
 end

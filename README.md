@@ -105,17 +105,18 @@ set :delayed_job_roles, [:app, :background]
 # set :delayed_job_pid_dir, 'path_to_pid_dir'
 ```
 
-It also adds the following hook
+It also conditionally adds the following hook:
 
 ```ruby
-after 'deploy:published', 'delayed_job:restart' do
-    invoke 'delayed_job:restart'
-end
+  if Rake::Task.task_defined?('deploy:published')
+    after 'deploy:published', 'delayed_job:restart'
+  end
 ```
 
-You can disable default hook by setting delayed_job_default_hooks to false
+You can disable default hook by setting `delayed_job_default_hooks` to `false`. (It still gets _defined_, but will not do anything when called.)
+
 ```ruby
-set delayed_job_default_hooks, false
+set :delayed_job_default_hooks, false
 ```
 
 Following setting is recommended to avoid stop/restart problem.
