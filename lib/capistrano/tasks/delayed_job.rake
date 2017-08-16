@@ -15,6 +15,9 @@ namespace :delayed_job do
     unless fetch(:delayed_job_pools).nil?
       args << fetch(:delayed_job_pools, {}).map {|k,v| "--pool='#{k}:#{v}'" }.join(' ')
     end
+    unless fetch(:delayed_job_daemon_opts).nil?
+      args << fetch(:delayed_job_daemon_opts, []).map { |option| "--daemon-options='--#{option}'"}.join(' ')
+    end
     args.join(' ')
   end
 
