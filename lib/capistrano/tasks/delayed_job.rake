@@ -15,6 +15,10 @@ namespace :delayed_job do
     unless fetch(:delayed_job_pools).nil?
       args << fetch(:delayed_job_pools, {}).map {|k,v| "--pool='#{k}:#{v}'" }.join(' ')
     end
+    unless fetch(:delayed_job_pools_per_machine).nil?
+      server = capture(:hostname)
+      args << fetch(:delayed_job_pools_per_machine, {})[server].map {|k,v| "--pool='#{k}:#{v}'" }.join(' ')
+    end
     args.join(' ')
   end
 
@@ -84,6 +88,7 @@ namespace :load do
     set :delayed_job_workers, 1
     set :delayed_job_queues, nil
     set :delayed_job_pools, nil
+    set :delayed_job_pools_per_machine, nil
     set :delayed_job_roles, :app
     set :delayed_job_bin_path, 'bin'
     set :delayed_job_monitor, nil
