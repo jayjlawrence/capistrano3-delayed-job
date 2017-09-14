@@ -79,6 +79,28 @@ set :delayed_job_queues, ['mailer','tracking']
 #     'high_priority,*,low_priority' => 1, # works on whatever is available
 #     '*,low_priority' => 1,  # high_priority doesn't starve the little guys
 #   }
+
+# Several workers each handling one or more queues, different settings 
+# per machine:
+# 
+# set :delayed_job_pools_per_machine, {
+#   'machine-1' => {
+#     'default,emails' => 3,
+#     'loud_notifications' => 1,
+#     'silent_notifications' => 1,
+#   },
+#   'machine-2' => {
+#     'default' => 2
+#   }
+# }
+
+# set :delayed_job_pools, {
+#     'high_priority' => 1,                # one just for the important stuff
+#     'high_priority,*' => 1,              # never blocked by low_priority jobs
+#     'high_priority,*,low_priority' => 1, # works on whatever is available
+#     '*,low_priority' => 1,  # high_priority doesn't starve the little guys
+#   }
+
 # Identification is assigned in order 0..3.
 # Note that the '*' in this case is actually a queue with that name and does
 # not mean any queue as it is not used alone, but alongside other queues.
