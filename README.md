@@ -94,13 +94,6 @@ set :delayed_job_queues, ['mailer','tracking']
 #   }
 # }
 
-# set :delayed_job_pools, {
-#     'high_priority' => 1,                # one just for the important stuff
-#     'high_priority,*' => 1,              # never blocked by low_priority jobs
-#     'high_priority,*,low_priority' => 1, # works on whatever is available
-#     '*,low_priority' => 1,  # high_priority doesn't starve the little guys
-#   }
-
 # Identification is assigned in order 0..3.
 # Note that the '*' in this case is actually a queue with that name and does
 # not mean any queue as it is not used alone, but alongside other queues.
