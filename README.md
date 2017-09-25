@@ -80,19 +80,25 @@ set :delayed_job_queues, ['mailer','tracking']
 #     '*,low_priority' => 1,  # high_priority doesn't starve the little guys
 #   }
 
-# Several workers each handling one or more queues, different settings 
-# per machine:
+# If you have several servers handling Delayed Jobs and you want to configure
+# different pools per server, you can define delayed_job_pools_per_server:
 # 
-# set :delayed_job_pools_per_machine, {
-#   'machine-1' => {
+# set :delayed_job_pools_per_server, {
+#   'server11-prod' => {
 #     'default,emails' => 3,
 #     'loud_notifications' => 1,
 #     'silent_notifications' => 1,
 #   },
-#   'machine-2' => {
+#   'server12-prod' => {
 #     'default' => 2
 #   }
 # }
+
+# Server names (server11-prod, server12-prod) in :delayed_job_pools_per_server 
+# must match the hostnames on Delaye Job servers. You can verify it by running 
+# `hostname` on your servers.
+
+# If you use :delayed_job_pools_per_server, :delayed_job_pools will be ignored.
 
 # Identification is assigned in order 0..3.
 # Note that the '*' in this case is actually a queue with that name and does
