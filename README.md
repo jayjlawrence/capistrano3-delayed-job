@@ -95,7 +95,7 @@ set :delayed_job_queues, ['mailer','tracking']
 # }
 
 # Server names (server11-prod, server12-prod) in :delayed_job_pools_per_server 
-# must match the hostnames on Delaye Job servers. You can verify it by running 
+# must match the hostnames on Delayed Job servers. You can verify it by running 
 # `hostname` on your servers.
 
 # If you use :delayed_job_pools_per_server, :delayed_job_pools will be ignored.
