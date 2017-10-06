@@ -1,10 +1,11 @@
 # coding: utf-8
+
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "capistrano3-delayed-job"
-  spec.version       = "1.7.3"
+  spec.version       = "1.7.4"
   spec.authors       = ["Rob Biedenharn",
                         "Juan Ignacio Donoso",
                         "Agustin Feuerhake",

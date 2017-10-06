@@ -1,6 +1,6 @@
-# rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
-# rubocop:disable Metrics/PerceivedComplexity, Style/EmptyLinesAroundBlockBody
-# rubocop:disable Style/SpaceInsideParens
+# rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength
+# rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+# rubocop:disable Style/SpaceInsideParens, Style/EmptyLinesAroundBlockBody
 
 namespace :delayed_job do
 
