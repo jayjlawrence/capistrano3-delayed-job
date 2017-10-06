@@ -124,6 +124,10 @@ set :delayed_job_roles, [:app, :background]
 ### Set the location of the delayed_job pid file(s)
 # default value: "#{Rails.root}/tmp/pids" or "#{Dir.pwd}/tmp/pids"
 # set :delayed_job_pid_dir, 'path_to_pid_dir'
+
+### Set the options to be passed along to daemons when starting/stopping/restarting delayed_job workers
+# options supported by daemons can be found at https://github.com/thuehlinger/daemons/blob/master/lib/daemons/cmdline.rb
+# set :delayed_job_daemon_opts, ["no_wait", "shush"]
 ```
 
 It also conditionally adds the following hook:
