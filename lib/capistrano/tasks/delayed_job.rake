@@ -66,19 +66,22 @@ namespace :delayed_job do
 
   desc 'Restart the delayed_job process'
   task :restart do
-    if fetch(:delayed_job_default_hooks)
-      on roles(delayed_job_roles) do
-        within release_path do
-          with rails_env: fetch(:rails_env) do
-            execute :bundle, :exec, delayed_job_bin, delayed_job_args, :restart
-          end
+    on roles(delayed_job_roles) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, delayed_job_bin, delayed_job_args, :restart
         end
       end
     end
   end
 
+  desc 'Default task - conditionally restart'
+  task :default do
+    invoke 'delayed_job:restart' if fetch(:delayed_job_default_hooks, true)
+  end
+
   if Rake::Task.task_defined?('deploy:published')
-    after 'deploy:published', 'delayed_job:restart'
+    after 'deploy:published', 'delayed_job:default'
   end
 end
 
