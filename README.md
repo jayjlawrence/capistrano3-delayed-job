@@ -82,7 +82,7 @@ set :delayed_job_queues, ['mailer','tracking']
 
 # If you have several servers handling Delayed Jobs and you want to configure
 # different pools per server, you can define delayed_job_pools_per_server:
-# 
+#
 # set :delayed_job_pools_per_server, {
 #   'server11-prod' => {
 #     'default,emails' => 3,
@@ -94,8 +94,8 @@ set :delayed_job_queues, ['mailer','tracking']
 #   }
 # }
 
-# Server names (server11-prod, server12-prod) in :delayed_job_pools_per_server 
-# must match the hostnames on Delayed Job servers. You can verify it by running 
+# Server names (server11-prod, server12-prod) in :delayed_job_pools_per_server
+# must match the hostnames on Delayed Job servers. You can verify it by running
 # `hostname` on your servers.
 
 # If you use :delayed_job_pools_per_server, :delayed_job_pools will be ignored.
@@ -130,11 +130,19 @@ It also conditionally adds the following hook:
 
 ```ruby
   if Rake::Task.task_defined?('deploy:published')
-    after 'deploy:published', 'delayed_job:restart'
+    after 'deploy:published', 'delayed_job:default'
   end
 ```
 
-You can disable default hook by setting `delayed_job_default_hooks` to `false`. (It still gets _defined_, but will not do anything when called.)
+Where the `delayed_job:default` is defined as:
+
+```ruby
+  task :default do
+    invoke 'delayed_job:restart' if fetch(:delayed_job_default_hooks, true)
+  end
+```
+
+Thus you can disable default hook by setting `delayed_job_default_hooks` to `false`. (It still gets _defined_, but will not do anything when called.)
 
 ```ruby
 set :delayed_job_default_hooks, false
@@ -166,8 +174,7 @@ Thank you [contributors](https://github.com/AgileConsultingLLC/capistrano3-delay
 capistrano3-delayed-job is maintained [Rob Biedenharn](https://github.com/rab) and
 [![Logo of Agile Consulting LLC](http://agileconsultingllc.com/agile-logo-small.png "Agile Consulting LLC")](http://agileconsultingllc.com/)
 
-Originally developed by [platanus](http://platan.us).
-[<img src="http://platan.us/gravatar_with_text.png" alt="Platanus" width="125"/>](http://platan.us/)
+Originally developed by [Platanus](http://platan.us).
 
 ## License
 
