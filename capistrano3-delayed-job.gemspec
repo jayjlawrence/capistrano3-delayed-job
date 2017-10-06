@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "capistrano3-delayed-job"
-  spec.version       = "1.7.4"
+  spec.version       = "1.7.5"
   spec.authors       = ["Rob Biedenharn",
                         "Juan Ignacio Donoso",
                         "Agustin Feuerhake",
