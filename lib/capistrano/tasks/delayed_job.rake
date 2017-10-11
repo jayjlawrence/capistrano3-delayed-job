@@ -86,6 +86,20 @@ namespace :delayed_job do
   if Rake::Task.task_defined?('deploy:published')
     after 'deploy:published', 'delayed_job:default'
   end
+
+  desc 'Clear existing jobs'
+  task :clear do
+    if fetch(:delayed_job_default_hooks)
+      on roles(delayed_job_roles) do
+        within release_path do
+          with rails_env: fetch(:rails_env) do
+            execute :rake, 'jobs:clear'
+          end
+        end
+      end
+    end
+  end
+
 end
 
 namespace :load do

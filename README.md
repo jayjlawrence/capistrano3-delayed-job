@@ -32,6 +32,7 @@ cap delayed_job:restart  # Restart the delayed_job process
 cap delayed_job:start    # Start the delayed_job process
 cap delayed_job:status   # Status of the delayed_job process
 cap delayed_job:stop     # Stop the delayed_job process
+cap delayed_job:clear    # Clear the delayed_job queue
 ```
 
 Configurable options (copy into deploy.rb), shown here with examples:
